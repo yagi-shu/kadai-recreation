@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User; 
+
 class UsersController extends Controller
 {
     public function show($id)
@@ -18,7 +20,7 @@ class UsersController extends Controller
         $recreations = $user->recreations()->orderBy('created_at', 'desc')->paginate(10);
 
         // ユーザ詳細ビューでそれらを表示
-        return view('users.show', [
+        return view('recreations.recreations', [
             'user' => $user,
             'recreations' => $recreations,
         ]);

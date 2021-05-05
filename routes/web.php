@@ -20,7 +20,9 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
+Route::get('recreation/{id}','RecreationController@show')->name('recreations.show');
+
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('recreations', 'RecreationController', ['only' => ['store', 'destroy']]);
-    Route::resource('users','UsersController',['only' => ['show']]);
+    Route::resource('recreations', 'RecreationController',['only' => ['create','store','update','edit','destroy']]);
+    Route::resource('users', 'UsersController', ['only' => ['show']]);
 });

@@ -1,12 +1,15 @@
+@extends('layouts.app')
+
 @section('content')
-    <div class="text-center">
-        <h1>投稿</h1>
+
+<div class="text-center">
+        <h1>編集</h1>
     </div>
 
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
 
-            {!! Form::open(['route' => 'recreations.store']) !!}
+            {!! Form::open(['route' => ['recreations.update', $recreation->id], 'method' => 'put']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'レクリエーション名') !!}
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -19,14 +22,14 @@
 
                 <div class="form-group">
                     {!! Form::label('number', '人数') !!}
-                    {!! Form::select('min_number',[2,3,4,5,6,7,8,9,10], ['class' => 'form-control'],'display:inline') !!}
-                     ~
-                    {!! Form::select('max_number',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], ['class' => 'form-control']) !!}
+                    {!! Form::select('min_number',[1,2,3,4,5,6,7,8,9,10], ['class' => 'form-control', 'display:inline']) !!}人
+                    ~
+                    {!! Form::select('max_number',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], ['class' => 'form-control', 'display:inline']) !!}人
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('time', '時間') !!}
-                    {!! Form::select('time', [15,30,45,60],['class' => 'form-control']) !!}
+                    {!! Form::select('time', [15,30,45,60], ['class' => 'form-control']) !!}分
                 </div>
                 
                 <div class="form-group">
@@ -40,12 +43,14 @@
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::label('text', '内容') !!}
-                    {!! Form::textarea('text', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('content', '内容') !!}
+                    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('投稿', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('更新', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>
+
+
 @endsection

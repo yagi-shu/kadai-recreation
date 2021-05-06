@@ -20,10 +20,14 @@
         </tr>
     </table>
     
-    {!! link_to_route('recreations.edit', '編集', ['recreation' => $recreation->id], ['class' => 'btn btn-light']) !!}
-    
-    {!! Form::model($recreation, ['route' => ['recreations.destroy', $recreation->id], 'method' => 'delete']) !!}
-        {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
-    {!! Form::close() !!}
+        @if (Auth::id() == $recreation->user_id)
+            {!! link_to_route('recreations.edit', '編集', ['recreation' => $recreation->id], ['class' => 'btn btn-light']) !!}
+            
+            {!! Form::model($recreation, ['route' => ['recreations.destroy', $recreation->id], 'method' => 'delete']) !!}
+                {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+        @endif
+        
+        @include('favorites.favorite_button')
 
 @endsection

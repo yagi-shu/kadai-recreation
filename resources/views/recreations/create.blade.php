@@ -16,19 +16,19 @@
 
                 <div class="form-group">
                     {!! Form::label('type', 'レクリエーションの種類') !!}
-                    {!! Form::select('type', ['手作業','体操','脳トレ','その他'], ['class' => 'form-control']) !!}
+                    {!! Form::select('type', ['手作業' => '手作業','体操' => '体操', '脳トレ' => '脳トレ', 'その他' => 'その他'], ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('number', '人数') !!}
-                    {!! Form::select('min_number',[1,2,3,4,5,6,7,8,9,10], ['class' => 'form-control', 'display:inline']) !!}人
+                    {!! Form::select('min_number',[0,1,2,3,4,5,6,7,8,9,10], ['class' => 'form-control', 'display:inline']) !!}人
                     ~
-                    {!! Form::select('max_number',[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], ['class' => 'form-control', 'display:inline']) !!}人
+                    {!! Form::select('max_number',[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], ['class' => 'form-control', 'display:inline']) !!}人
                 </div>
 
                 <div class="form-group">
                     {!! Form::label('time', '時間') !!}
-                    {!! Form::select('time', [15,30,45,60], ['class' => 'form-control']) !!}分
+                    {!! Form::select('time', [15 => 15,30 => 30,45 => 45,60 => 60], ['class' => 'form-control']) !!}分
                 </div>
                 
                 <div class="form-group">
@@ -38,7 +38,7 @@
                 
                 <div class="form-group">
                     {!! Form::label('service', 'サービスの種類') !!}
-                    {!! Form::select('service', ['入所型','通所型','訪問型','その他'],['class' => 'form-control']) !!}
+                    {!! Form::select('service', ['入所型' =>'入所型','通所型' => '通所型','訪問型' => '訪問型','その他' => 'その他'],['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">

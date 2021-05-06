@@ -73,28 +73,41 @@ class RecreationController extends Controller
     {
         // idの値でレクリエーションを検索して取得
         $recreation = Recreation::findOrFail($id);
+        if (\Auth::id() === $recreation->user_id) {
 
         // レクリエーション詳細ビューでそれを表示
         return view('recreations.show', [
             'recreation' => $recreation,
         ]);
+        }
+        else {
+            return redirect('/');
+        }
     }
     
     public function edit($id)
     {
         // idの値でレクリエーションを検索して取得
         $recreation = Recreation::findOrFail($id);
+        if (\Auth::id() === $recreation->user_id) {
 
         // レクリエーション編集ビューでそれを表示
         return view('recreations.edit', [
             'recreation' => $recreation,
         ]);
+        
+        }
+        else {
+            return redirect('/');
+        }
     }
     
     public function update(Request $request, $id)
     {
         // idの値でレクリエーションを検索して取得
         $recreation = Recreation::findOrFail($id);
+        
+        if (\Auth::id() === $recreation->user_id) {
         // レクリエーションを更新
         $recreation->name = $request->name;
         $recreation->type = $request->type;
@@ -105,7 +118,7 @@ class RecreationController extends Controller
         $recreation->service = $request->service;
         $recreation->content = $request->content;
         $recreation->save();
-
+        }
         // トップページへリダイレクトさせる
         return redirect('/');
     }
@@ -116,7 +129,9 @@ class RecreationController extends Controller
         // idの値でレクリエーションを検索して取得
         $recreation = Recreation::findOrFail($id);
         // メッセージを削除
-        $recreation->delete();
+        if (\Auth::id() === $recreation->user_id) {
+            $recreation->delete();
+        }
 
         // トップページへリダイレクトさせる
         return redirect('/');

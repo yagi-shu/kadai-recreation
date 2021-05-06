@@ -13,7 +13,9 @@
             <tr>
                 <td>{!! link_to_route('recreations.show', $recreation->name, ['id' => $recreation->id]) !!}</td>
                 <td>{{ $recreation->content }}</td>
+                <td>@include('favorites.favorite_button')</td>
             </tr>
+                
             @endforeach
         </tbody>
     </table>

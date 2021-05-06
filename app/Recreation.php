@@ -25,5 +25,10 @@ class Recreation extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function favorite_users()
+    {
+        return $this->belongsTo(User::class, 'favorites','recreation_id','user_id')->withTimestamps();
+    }
 }
 

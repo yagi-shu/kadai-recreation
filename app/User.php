@@ -42,8 +42,42 @@ class User extends Authenticatable
         return $this->hasMany(Recreation::class);
     }
     
+    public function favorites()
+    {
+        return $this->belongsToMany(Recreation::class, 'favorites','user_id','recreation_id')->withTimestamps();
+    }
+    
+    public function favorite($recreationId)
+    {
+        $exist = $this->is_favorite($recreationId);
+        
+        if ($exist) {
+            return false;
+        }else {
+            $this->favorites()->attach($recreationId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($recreationId)
+    {
+        $exist = $this->is_favorite($recreationId);
+        
+        if ($exist) {
+            $this->favorites()->detach($recreationId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function is_favorite($recreationId)
+    {
+        return $this->favorites()->where('recreation_id',$recreationId)->exists();
+    }
+    
     public function loadRelationshipCounts()
     {
-        $this->loadCount('recreations');
+        $this->loadCount('recreations','favorites');
     }
 }

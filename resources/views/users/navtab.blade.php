@@ -22,7 +22,7 @@
              ユーザー
             </a>
         @else 
-            <a href="{{ route('login') }}" class="nav-link {{ Request::routeIs('login') ? 'active' : '' }}">
+            <a href="{{ route('login') }}" class="nav-link">
              ユーザー
             </a>
         @endif
@@ -33,9 +33,15 @@
     {{-- お気に入り一覧　--}}
     
     <li class="nav-item">
-        <a href="#" class="nav-link">
-         お気に入り
-        </a>
+        @if (\Auth::check()) 
+            <a href="{{ route('users.favorites',['id' => \Auth::id()]) }}" class="nav-link {{ Request::routeIs('favorites.') ? 'active' : '' }}">
+             お気に入り
+            </a>
+        @else
+             <a href="{{ route('login') }}" class="nav-link">
+             お気に入り
+            </a>
+        @endif
     </li>
     
     {{-- 投稿 --}}
@@ -45,7 +51,7 @@
              投稿
             </a>
         @else 
-            <a href="{{ route('login') }}" class="nav-link {{ Request::routeIs('login') ? 'active' : '' }}">
+            <a href="{{ route('login') }}" class="nav-link">
              投稿
             </a>
         @endif

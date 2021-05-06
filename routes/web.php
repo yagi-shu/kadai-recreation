@@ -21,6 +21,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::get('recreation/{id}','RecreationController@show')->name('recreations.show');
+Route::get('recreation','RecreationController@popular')->name('recreations.popular');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'users/{id}'], function () {

@@ -9,7 +9,7 @@
     {{-- 人気投稿一覧 --}}
  
    <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{ route('recreations.popular')}}" class="nav-link {{ Request::routeIs('recreations.popular') ? 'active' : '' }}">
          人気
         </a>
     </li>

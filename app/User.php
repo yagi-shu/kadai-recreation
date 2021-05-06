@@ -80,4 +80,9 @@ class User extends Authenticatable
     {
         $this->loadCount('recreations','favorites');
     }
+    
+    public function pet()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 }

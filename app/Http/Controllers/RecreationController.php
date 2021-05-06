@@ -136,6 +136,18 @@ class RecreationController extends Controller
         // トップページへリダイレクトさせる
         return redirect('/');
     }
+    
+    public function popular()
+    {
+        $user = \Auth::user();
+        
+        $recreations = Recreation::withCount('favorites')->orderBy('favorites_count','desc')->paginate(20);
+        
+        return view('welcome',[
+            'user' => $user,
+            'recreations' => $recreations
+        ]);
+    }
 }
 
 
